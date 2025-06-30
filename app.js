@@ -1,10 +1,17 @@
 const textarea = document.getElementById("textarea");
 const total = document.getElementById("total");
 const remaining = document.getElementById("remaining");
-const maxLength = textarea.getAttribute("maxlength");
+const maxLength = 15;
 
 textarea.addEventListener("input", () => {
-  const len = textarea.value.length;
+  let text = textarea.value;
+  
+  if (text.length > maxLength) {
+    text = text.slice(0, maxLength);     
+    textarea.value = text;                
+  }
+
+  const len = text.length;
   total.textContent = `Всего: ${len}`;
   remaining.textContent = `Осталось: ${maxLength - len}`;
 });
